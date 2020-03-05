@@ -27,7 +27,6 @@ public class TimeView extends AppCompatTextView {
     }
 
     private void init(Context context, AttributeSet attrs) throws ParseException {
-        setTypeface(Typeface.SANS_SERIF);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TimeView);
         try {
             String start = typedArray.getString(R.styleable.TimeView_timeStart);
