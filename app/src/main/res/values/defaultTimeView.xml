@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TimeView">
+        <attr name="timeStart" format="string" />
+        <attr name="timeEnd" format="string" />
+    </declare-styleable>
+</resources>

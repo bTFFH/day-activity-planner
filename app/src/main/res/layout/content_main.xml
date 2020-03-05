@@ -8,6 +8,21 @@
     tools:context="ru.finashka.MainActivity"
     tools:showIn="@layout/activity_main">
 
+<!--    <ru.finashka.TimeView-->
+<!--        android:id="@+id/time_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        app:timeStart="2020-03-05T08:00:00"-->
+<!--        app:timeEnd="2020-03-05T09:00:00"-->
+<!--        />-->
+
+    <include layout="@layout/time_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

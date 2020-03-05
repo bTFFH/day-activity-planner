@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ru.finashka.TimeView
+        android:id="@+id/time_view"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:timeStart="2020-03-05T08:00:00"
+        app:timeEnd="2020-03-05T09:00:00"
+        />
+
+</LinearLayout>

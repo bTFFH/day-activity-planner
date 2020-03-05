@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
         });
+
+        TimeView timeView = findViewById(R.id.time_view);
     }
 
     @Override
