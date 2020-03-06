@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:fontFamily="@font/roboto"
+    android:orientation="vertical">
+
+    <!-- should be removed after introducing a list of components -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- TODO: each component is a part of a list so need to create component which will contain 'divider' property -->
+        <!-- below - single component, should be part of a dynamically generated list -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <include
+                layout="@layout/activity_card_time_view"
+                android:layout_width="100dp"
+                android:layout_height="match_parent" />
+
+            <include
+                layout="@layout/activity_card_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <!-- just temporary divider -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#A8C7F5" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
