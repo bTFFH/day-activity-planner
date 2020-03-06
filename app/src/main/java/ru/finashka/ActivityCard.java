@@ -1,3 +1,4 @@
+/*
 package ru.finashka;
 
 import android.content.Context;
@@ -8,22 +9,28 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
 public class ActivityCard extends AppCompatTextView {
-    private String title;
+    private TimeView timeView;
+    private ActivityCardContent cardContent;
 
     public ActivityCard(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ActivityCard);
         try {
-            String title = typedArray.getString(R.styleable.ActivityCard_title);
+            ActivityCardContent content = typedArray.get(R.styleable.ActivityCard_content);
 
-            setTitle(title);
+            setCardContent(content);
         } finally {
             typedArray.recycle();
         }
         setText(title);
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCardContent(ActivityCardContent cardContent) {
+        this.cardContent = cardContent;
+    }
+
+    public ActivityCardContent getCardContent() {
+        return cardContent;
     }
 }
+*/
