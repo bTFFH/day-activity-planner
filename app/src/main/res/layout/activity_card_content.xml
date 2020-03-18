@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <ru.finashka.ActivityCardContent
+        android:id="@+id/activity_card_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textAlignment="viewStart"

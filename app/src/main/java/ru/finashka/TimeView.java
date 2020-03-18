@@ -2,7 +2,6 @@ package ru.finashka;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
@@ -15,23 +14,19 @@ import java.util.Locale;
 
 public class TimeView extends AppCompatTextView {
 
-    private static SimpleDateFormat formatterFromString = new SimpleDateFormat("yyyy-mm-dd'T'hh:mm:ss", Locale.getDefault());
     private static SimpleDateFormat formatterToString = new SimpleDateFormat("hh:mm", Locale.getDefault());
 
     private Date timeStart;
     private Date timeEnd;
 
-    public TimeView(Context context, @Nullable AttributeSet attrs) throws ParseException {
+    public TimeView(Context context, Date start, Date end, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
+        init(context, attrs, start, end);
     }
 
-    private void init(Context context, AttributeSet attrs) throws ParseException {
+    private void init(Context context, AttributeSet attrs, Date start, Date end) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TimeView);
         try {
-            String start = typedArray.getString(R.styleable.TimeView_timeStart);
-            String end = typedArray.getString(R.styleable.TimeView_timeEnd);
-
             setTimeStart(start);
             setTimeEnd(end);
         } finally {
@@ -42,12 +37,11 @@ public class TimeView extends AppCompatTextView {
                 formatterToString.format(timeEnd)));
     }
 
-    private void setTimeStart(String string) throws ParseException {
-        timeStart = formatterFromString.parse(string);
+    private void setTimeStart(Date date) {
+        timeStart = date;
     }
 
-    private void setTimeEnd(String string) throws ParseException {
-        timeEnd = formatterFromString.parse(string);
+    private void setTimeEnd(Date date) {
+        timeEnd = date;
     }
-
 }

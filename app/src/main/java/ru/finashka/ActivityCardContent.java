@@ -10,12 +10,10 @@ import androidx.appcompat.widget.AppCompatTextView;
 public class ActivityCardContent extends AppCompatTextView {
     private String title;
 
-    public ActivityCardContent(Context context, @Nullable AttributeSet attrs) {
+    public ActivityCardContent(Context context, @Nullable AttributeSet attrs, String title) {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ActivityCardContent);
         try {
-            String title = typedArray.getString(R.styleable.ActivityCardContent_title);
-
             setTitle(title);
         } finally {
             typedArray.recycle();
