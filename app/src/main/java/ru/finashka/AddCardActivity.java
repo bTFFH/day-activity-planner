@@ -1,23 +1,29 @@
 package ru.finashka;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
+import ru.finashka.common.DateTimePickerFragment;
 import ru.finashka.entity.Card;
 
 public class AddCardActivity extends AppCompatActivity {
 
     private static SimpleDateFormat formatterFromString = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
+    private SimpleDateFormat mFormatter = new SimpleDateFormat("hh:mm dd/MM/yyyy", Locale.getDefault());
+
+    private Calendar startDate;
+    private Calendar endDate;
 
 
     @Override
@@ -26,20 +32,39 @@ public class AddCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_card);
     }
 
-    public void addCard(View view) throws ParseException {
+    public void addCard(View view) {
         TextView titleView = findViewById(R.id.title);
         String title = titleView.getText().toString();
         TextView detailsView = findViewById(R.id.details);
         String details = detailsView.getText().toString();
-        TextView startDateView = findViewById(R.id.start_date);
-        String startTime = startDateView.getText().toString();
-        TextView endDateView = findViewById(R.id.end_date);
-        String endTime = endDateView.getText().toString();
-        Card card = new Card(title, details, formatterFromString.parse(startTime), formatterFromString.parse(endTime));
+        Card card = new Card(title, details, startDate.getTime(), endDate.getTime());
         Intent data = new Intent();
         data.putExtra("card", card);
         setResult(Activity.RESULT_OK, data);
         finish();
 
     }
+
+    public void openStartTimeDialog(View view) {
+        final DateTimePickerFragment dateTimePicker = new DateTimePickerFragment(getSupportFragmentManager());
+        dateTimePicker.show(getSupportFragmentManager(), "dateTimePicker");
+        dateTimePicker.onDismiss(new DialogInterface() {
+            @Override
+            public void cancel() {
+            }
+
+            @Override
+            public void dismiss() {
+                startDate = dateTimePicker.getSelectedDate();
+                Button btn = findViewById(R.id.start_date_btn);
+                btn.setText(mFormatter.format(startDate));
+            }
+        });
+    }
+
+
+    public void openEndTimeDialog(View view) {
+
+    }
 }
+

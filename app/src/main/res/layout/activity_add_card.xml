@@ -1,54 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".AddCardActivity">
 
-    <EditText
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:singleLine="true"
-        android:text="@string/add_card_title" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/add_card_details" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_card_title" />
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/add_card_title"
+            android:inputType="textPersonName"
+            android:singleLine="true" />
 
-    <EditText
-        android:id="@+id/start_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="datetime"
-        android:text="@string/add_card_start" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_card_details" />
+        <EditText
+            android:id="@+id/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/add_card_details"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/end_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="datetime"
-        android:text="@string/add_card_start" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_card_start" />
+
+        <Button
+            android:id="@+id/start_date_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@color/white"
+            android:ems="10"
+            android:onClick="openStartTimeDialog"
+            android:textAlignment="textStart" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_card_end" />
+
+        <Button
+            android:id="@+id/end_date_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@color/white"
+            android:ems="10"
+            android:onClick="openEndTimeDialog"
+            android:textAlignment="textStart" />
+    </LinearLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_btn"
+        android:id="@+id/save_card_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -57,4 +83,4 @@
         android:onClick="addCard"
         app:srcCompat="@drawable/ic_done_white_24dp" />
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
