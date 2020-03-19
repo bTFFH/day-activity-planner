@@ -10,6 +10,7 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -21,18 +22,24 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 public class Card implements Serializable {
-    @PrimaryKey
-    public int id;
+    /* TODO: integrate data bindings after database complete integration according to https://www.androidauthority.com/data-binding-in-android-709747/ */
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @NonNull
     @ColumnInfo(name = "title")
-    public String title;
+    private String title;
 
+    @NonNull
     @ColumnInfo(name = "details")
-    public String details;
+    private String details;
 
+    @NonNull
     @ColumnInfo(name = "start_time")
-    public Date startTime;
+    private Date startTime;
 
+    @NonNull
     @ColumnInfo(name = "end_time")
-    public Date endTime;
+    private Date endTime;
 }
