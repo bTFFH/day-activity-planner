@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ActivityCard">
-        <attr name="content" format="reference" />
-        <attr name="timeView" format="reference" />
+    <declare-styleable name="ActivityCardView">
+        <attr name="card" format="reference" />
     </declare-styleable>
 </resources>

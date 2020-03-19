@@ -2,4 +2,9 @@
     <string name="app_name">Day Activity Planner</string>
     <string name="action_settings">Настройки</string>
     <string name="add_action">В разработке :)</string>
+    <string name="add_card_title">Заголовок</string>
+    <string name="add_card_details">Детали</string>
+    <string name="add_card_start">Начало</string>
+    <string name="add_card_end">Конец</string>
+
 </resources>
