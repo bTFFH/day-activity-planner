@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import lombok.SneakyThrows;
 import ru.finashka.entity.Card;
 import ru.finashka.service.UserActivityService;
+import androidx.room.Room;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -20,6 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private UserActivityService userActivityService;
+    private AppDatabase db;
 
     @SneakyThrows
     @Override
@@ -29,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "day-activity-planner").build();
         updateUserCards();
-
     }
 
     private void updateUserCards() throws ParseException {
