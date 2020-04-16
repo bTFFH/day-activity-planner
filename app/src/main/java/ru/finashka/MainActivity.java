@@ -6,18 +6,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import lombok.SneakyThrows;
+import ru.finashka.entity.Card;
+import ru.finashka.service.UserActivityService;
 
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.List;
-
-import lombok.SneakyThrows;
-import ru.finashka.entity.Card;
-import ru.finashka.service.UserActivityService;
 
 public class MainActivity extends AppCompatActivity {
 
