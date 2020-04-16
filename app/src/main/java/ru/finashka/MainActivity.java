@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // TODO: replace this with normal db creation (already in AppDatabase.java)
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "day-activity-planner").build();
         updateUserCards();

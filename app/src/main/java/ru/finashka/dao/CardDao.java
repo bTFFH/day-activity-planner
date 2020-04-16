@@ -15,7 +15,7 @@ import ru.finashka.entity.Card;
 @Dao
 public interface CardDao {
     @Query("SELECT * FROM card")
-    List<Card> getAll();
+    LiveData<List<Card>> getAll();
 
     @Query("SELECT * FROM card WHERE title LIKE :title")
     Card getByTitle(String title);
