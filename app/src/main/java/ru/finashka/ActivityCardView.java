@@ -4,12 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
-
 import androidx.annotation.Nullable;
+import ru.finashka.entity.Card;
 
 import java.text.ParseException;
-
-import ru.finashka.entity.Card;
 
 public class ActivityCardView extends LinearLayout {
 

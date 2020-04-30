@@ -1,10 +1,10 @@
 package ru.finashka.service;
 
+import ru.finashka.entity.Card;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import ru.finashka.entity.Card;
 
 public class UserActivityService {
     private List<Card> userCards = new ArrayList<>();
