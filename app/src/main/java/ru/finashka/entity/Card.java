@@ -20,6 +20,17 @@ import java.time.LocalDateTime;
 public class Card implements Serializable {
     /* TODO: integrate data bindings after database complete integration according to https://www.androidauthority.com/data-binding-in-android-709747/ */
 
+    @NonNull
+    private Card mCard;
+
+    public Card(Card card) {
+        this.mCard = card;
+    }
+
+    public Card getCard() {
+        return this.mCard;
+    }
+
     @PrimaryKey(autoGenerate = true)
     private Integer id;
 

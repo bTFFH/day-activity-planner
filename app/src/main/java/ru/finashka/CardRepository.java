@@ -9,7 +9,7 @@ import java.util.List;
 import ru.finashka.dao.CardDao;
 import ru.finashka.entity.Card;
 
-public class CardRepository {
+class CardRepository {
     private CardDao mCardDao;
     private LiveData<List<Card>> mAllCards;
 

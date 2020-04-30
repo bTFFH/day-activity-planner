@@ -12,6 +12,9 @@ import androidx.appcompat.widget.Toolbar;
 import lombok.SneakyThrows;
 import ru.finashka.entity.Card;
 import ru.finashka.service.UserActivityService;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import java.io.Serializable;
@@ -35,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "day-activity-planner").build();
         updateUserCards();
+        RecyclerView recyclerView = findViewById(R.id.activity_card_recycler_view);
+        final CardListAdapter adapter = new CardListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void updateUserCards() throws ParseException {
