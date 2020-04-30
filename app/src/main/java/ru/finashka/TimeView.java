@@ -6,23 +6,22 @@ import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class TimeView extends AppCompatTextView {
 
-    private static SimpleDateFormat formatterToString = new SimpleDateFormat("hh:mm", Locale.getDefault());
+    private static DateTimeFormatter formatterToString = DateTimeFormatter.ofPattern("hh:mm");
 
-    private Date timeStart;
-    private Date timeEnd;
+    private LocalDateTime timeStart;
+    private LocalDateTime timeEnd;
 
-    public TimeView(Context context, Date start, Date end, @Nullable AttributeSet attrs) {
+    public TimeView(Context context, LocalDateTime start, LocalDateTime end, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, start, end);
     }
 
-    private void init(Context context, AttributeSet attrs, Date start, Date end) {
+    private void init(Context context, AttributeSet attrs, LocalDateTime start, LocalDateTime end) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TimeView);
         try {
             setTimeStart(start);
@@ -35,11 +34,11 @@ public class TimeView extends AppCompatTextView {
                 formatterToString.format(timeEnd)));
     }
 
-    private void setTimeStart(Date date) {
+    private void setTimeStart(LocalDateTime date) {
         timeStart = date;
     }
 
-    private void setTimeEnd(Date date) {
+    private void setTimeEnd(LocalDateTime date) {
         timeEnd = date;
     }
 }
