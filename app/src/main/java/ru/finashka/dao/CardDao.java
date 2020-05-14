@@ -6,10 +6,13 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.TypeConverters;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import ru.finashka.converters.TimeConverter;
 import ru.finashka.entity.Card;
 
 @Dao
@@ -21,7 +24,8 @@ public interface CardDao {
     Card getByTitle(String title);
 
     @Query("SELECT * FROM card WHERE start_time > :start and end_time < :end ORDER BY start_time")
-    LiveData<List<Card>> getAllByStartEndTime(Date start, Date end);
+    @TypeConverters({TimeConverter.class})
+    LiveData<List<Card>> getAllByStartEndTime(LocalDateTime start, LocalDateTime end);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Card card);

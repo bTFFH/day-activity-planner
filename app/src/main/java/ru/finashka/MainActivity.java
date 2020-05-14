@@ -37,23 +37,23 @@ public class MainActivity extends AppCompatActivity {
         // TODO: replace this with normal db creation (already in AppDatabase.java)
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "day-activity-planner").build();
-        updateUserCards();
+//        updateUserCards();
         RecyclerView recyclerView = findViewById(R.id.activity_card_recycler_view);
         final CardListAdapter adapter = new CardListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void updateUserCards() throws ParseException {
-        LinearLayout myRoot = findViewById(R.id.activity_card_layout);
-        myRoot.removeAllViews();
-
-        List<Card> userCards = userActivityService.getUserCards();
-        for (Card userCard : userCards) {
-            ActivityCardView activityCardView = new ActivityCardView(this, userCard, null);
-            myRoot.addView(activityCardView);
-        }
-    }
+//    private void updateUserCards() throws ParseException {
+//        LinearLayout myRoot = findViewById(R.id.activity_card_layout);
+//        myRoot.removeAllViews();
+//
+//        List<Card> userCards = userActivityService.getUserCards();
+//        for (Card userCard : userCards) {
+//            ActivityCardView activityCardView = new ActivityCardView(this, userCard, null);
+//            myRoot.addView(activityCardView);
+//        }
+//    }
 
     @SneakyThrows
     @Override
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             Serializable cardS = data.getSerializableExtra("card");
             if (cardS != null) {
                 userActivityService.addUserCard((Card) cardS);
-                updateUserCards();
+//                updateUserCards();
             }
         }
     }

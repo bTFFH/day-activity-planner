@@ -23,7 +23,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
     }
 
     private final LayoutInflater mInflater;
-    private List<Card> mCards; // Cached copy of words
+    private List<Card> mCards; // Cached copy of cards
 
     CardListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
@@ -39,7 +39,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
     public void onBindViewHolder(CardViewHolder holder, int position) {
         if (mCards != null) {
             Card current = mCards.get(position);
-            holder.cardItemView.setText(current.getCard().getTitle());
+            holder.cardItemView.setText(current.getTitle());
         } else {
             // Covers the case of data not being ready yet.
             holder.cardItemView.setText("No Title");
