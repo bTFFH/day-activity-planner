@@ -13,13 +13,17 @@ public class CardViewModel extends AndroidViewModel {
     private CardRepository mRepository;
     private LiveData<List<Card>> mAllCards;
 
-    public CardViewModel (Application app) {
+    public CardViewModel(Application app) {
         super(app);
         mRepository = new CardRepository(app);
         mAllCards = mRepository.getAllCards();
     }
 
-    LiveData<List<Card>> getAllCards() { return mAllCards; }
+    LiveData<List<Card>> getAllCards() {
+        return mAllCards;
+    }
 
-    public void insert(Card card) { mRepository.insert(card); }
+    public void insert(Card card) {
+        mRepository.insert(card);
+    }
 }

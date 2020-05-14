@@ -23,9 +23,7 @@ import ru.finashka.entity.Card;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppDatabase db;
     private CardViewModel mCardViewModel;
-//    public static final int NEW_CARD_ACTIVITY_REQUEST_CODE = 1;
 
     @SneakyThrows
     @Override
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        db = AppDatabase.getDatabase(this);
         RecyclerView recyclerView = findViewById(R.id.activity_card_recycler_view);
         final CardListAdapter adapter = new CardListAdapter(this);
         recyclerView.setAdapter(adapter);
