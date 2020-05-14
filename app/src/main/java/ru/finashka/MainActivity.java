@@ -9,13 +9,17 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.SneakyThrows;
+import ru.finashka.dao.CardDao;
 import ru.finashka.entity.Card;
 import ru.finashka.service.UserActivityService;
 
@@ -23,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     private UserActivityService userActivityService;
     private AppDatabase db;
+    private CardDao dao;
+    private CardViewModel mCardViewModel;
+    public static final int NEW_CARD_ACTIVITY_REQUEST_CODE = 1;
 
     @SneakyThrows
     @Override
@@ -32,36 +39,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // TODO: replace this with normal db creation (already in AppDatabase.java)
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "day-activity-planner").build();
-//        updateUserCards();
+        db = AppDatabase.getDatabase(this);
+        dao = db.cardDao(); // FIXME: must not be implemented
         RecyclerView recyclerView = findViewById(R.id.activity_card_recycler_view);
         final CardListAdapter adapter = new CardListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
+        mCardViewModel.getAllCards().observe(this, new Observer<List<Card>>() {
+            @Override
+            public void onChanged(@Nullable final List<Card> cards) {
+                adapter.setCards(cards);
+            }
+        });
     }
-
-//    private void updateUserCards() throws ParseException {
-//        LinearLayout myRoot = findViewById(R.id.activity_card_layout);
-//        myRoot.removeAllViews();
-//
-//        List<Card> userCards = userActivityService.getUserCards();
-//        for (Card userCard : userCards) {
-//            ActivityCardView activityCardView = new ActivityCardView(this, userCard, null);
-//            myRoot.addView(activityCardView);
-//        }
-//    }
 
     @SneakyThrows
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
-            Serializable cardS = data.getSerializableExtra("card");
-            if (cardS != null) {
-                userActivityService.addUserCard((Card) cardS);
-//                updateUserCards();
+            Serializable sCard = data.getSerializableExtra("card");
+            if (sCard != null) {
+                dao.insert((Card) sCard); // FIXME: HERE APP BREAKS (DB operation in a wrong thread)
             }
         }
     }

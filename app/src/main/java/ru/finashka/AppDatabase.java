@@ -30,7 +30,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(
                             context.getApplicationContext(),
-                            AppDatabase.class, "word_database"
+                            AppDatabase.class, "day_activity_planner"
                     ).addCallback(initDBCallback).build();
                 }
             }
