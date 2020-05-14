@@ -6,5 +6,7 @@
     <string name="add_card_details">Детали</string>
     <string name="add_card_start">Начало</string>
     <string name="add_card_end">Конец</string>
+    <string name="card_saved">Карточка сохранена</string>
+    <string name="card_not_saved">Карточка не была сохранена</string>
 
 </resources>

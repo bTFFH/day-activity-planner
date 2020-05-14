@@ -1,4 +1,4 @@
-package ru.finashka.converters;
+package ru.finashka.converter;
 
 import androidx.room.TypeConverter;
 
@@ -13,7 +13,6 @@ public class TimeConverter {
 
     @TypeConverter
     public LocalDateTime toTime(String stringTime) {
-        LocalDateTime time = LocalDateTime.parse(stringTime);
-        return time;
+        return LocalDateTime.parse(stringTime);
     }
 }

@@ -9,10 +9,9 @@ import androidx.room.Query;
 import androidx.room.TypeConverters;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
-import ru.finashka.converters.TimeConverter;
+import ru.finashka.converter.TimeConverter;
 import ru.finashka.entity.Card;
 
 @Dao

@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
-import ru.finashka.converters.TimeConverter;
+import ru.finashka.converter.TimeConverter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
