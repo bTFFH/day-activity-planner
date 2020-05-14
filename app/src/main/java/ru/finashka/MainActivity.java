@@ -11,23 +11,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import java.io.Serializable;
 import java.util.List;
 
 import lombok.SneakyThrows;
-import ru.finashka.dao.CardDao;
 import ru.finashka.entity.Card;
-import ru.finashka.service.UserActivityService;
 
 public class MainActivity extends AppCompatActivity {
 
-    private UserActivityService userActivityService;
     private AppDatabase db;
     private CardViewModel mCardViewModel;
 //    public static final int NEW_CARD_ACTIVITY_REQUEST_CODE = 1;
@@ -36,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userActivityService = new UserActivityService();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
                 mCardViewModel.insert((Card) sCard);
                 Toast.makeText(
                         getApplicationContext(),
-                        "Card was saved",
+                        R.string.card_saved,
                         Toast.LENGTH_LONG).show();
             } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    "Card was not saved",
-                    Toast.LENGTH_LONG).show();
+                Toast.makeText(
+                        getApplicationContext(),
+                        R.string.card_not_saved,
+                        Toast.LENGTH_LONG).show();
             }
         }
     }
