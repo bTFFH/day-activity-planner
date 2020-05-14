@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import ru.finashka.entity.Card;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -84,7 +86,9 @@ public class AddCardActivity extends AppCompatActivity {
         String title = titleView.getText().toString();
         TextView detailsView = findViewById(R.id.details);
         String details = detailsView.getText().toString();
-        Card card = new Card(title, details, startDate.getTime(), endDate.getTime());
+        LocalDateTime startDate = this.startDate.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalDateTime endDate = this.endDate.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        Card card = new Card(null, title, details, startDate, endDate);
         Intent data = new Intent();
         data.putExtra("card", card);
         setResult(Activity.RESULT_OK, data);

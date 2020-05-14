@@ -13,6 +13,10 @@ import lombok.SneakyThrows;
 import ru.finashka.entity.Card;
 import ru.finashka.service.UserActivityService;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.List;
@@ -20,6 +24,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private UserActivityService userActivityService;
+    private AppDatabase db;
 
     @SneakyThrows
     @Override
@@ -29,20 +34,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        updateUserCards();
-
+        // TODO: replace this with normal db creation (already in AppDatabase.java)
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "day-activity-planner").build();
+//        updateUserCards();
+        RecyclerView recyclerView = findViewById(R.id.activity_card_recycler_view);
+        final CardListAdapter adapter = new CardListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void updateUserCards() throws ParseException {
-        LinearLayout myRoot = findViewById(R.id.activity_card_layout);
-        myRoot.removeAllViews();
-
-        List<Card> userCards = userActivityService.getUserCards();
-        for (Card userCard : userCards) {
-            ActivityCardView activityCardView = new ActivityCardView(this, userCard, null);
-            myRoot.addView(activityCardView);
-        }
-    }
+//    private void updateUserCards() throws ParseException {
+//        LinearLayout myRoot = findViewById(R.id.activity_card_layout);
+//        myRoot.removeAllViews();
+//
+//        List<Card> userCards = userActivityService.getUserCards();
+//        for (Card userCard : userCards) {
+//            ActivityCardView activityCardView = new ActivityCardView(this, userCard, null);
+//            myRoot.addView(activityCardView);
+//        }
+//    }
 
     @SneakyThrows
     @Override
@@ -52,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             Serializable cardS = data.getSerializableExtra("card");
             if (cardS != null) {
                 userActivityService.addUserCard((Card) cardS);
-                updateUserCards();
+//                updateUserCards();
             }
         }
     }
