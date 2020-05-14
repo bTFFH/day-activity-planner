@@ -1,10 +1,10 @@
 package ru.finashka.service;
 
+import ru.finashka.entity.Card;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import ru.finashka.entity.Card;
 
 public class UserActivityService {
     private List<Card> userCards = new ArrayList<>();
@@ -20,5 +20,9 @@ public class UserActivityService {
 
     public List<Card> getUserCards() {
         return userCards;
+    }
+
+    public void removeCard(Card card) {
+        userCards.remove(card);
     }
 }

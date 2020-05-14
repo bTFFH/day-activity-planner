@@ -6,5 +6,7 @@
     <string name="add_card_details">Детали</string>
     <string name="add_card_start">Начало</string>
     <string name="add_card_end">Конец</string>
+    <string name="delete_card_item">Удалить</string>
+    <string name="edit_card_item">Изменить</string>
 
 </resources>
