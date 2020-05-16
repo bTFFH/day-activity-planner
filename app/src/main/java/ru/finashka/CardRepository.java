@@ -31,4 +31,16 @@ class CardRepository {
             }
         });
     }
+
+    void delete(final Card card) {
+        AppDatabase.databaseWriteExecutor.execute(() -> { mCardDao.delete(card); });
+    }
+
+    void update(final Card card) {
+        AppDatabase.databaseWriteExecutor.execute(() -> { mCardDao.update(card); });
+    }
+
+    void deleteCards(final Card... cards) {
+        AppDatabase.databaseWriteExecutor.execute(() -> { mCardDao.deleteCards(cards); });
+    }
 }

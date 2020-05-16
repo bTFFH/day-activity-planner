@@ -7,6 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.TypeConverters;
+import androidx.room.Update;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,4 +32,10 @@ public interface CardDao {
 
     @Delete
     void delete(Card card);
+
+    @Update
+    void update(Card card);
+
+    @Delete
+    void deleteCards(Card... cards);
 }
