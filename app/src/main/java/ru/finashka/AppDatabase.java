@@ -39,13 +39,16 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     private static RoomDatabase.Callback initDBCallback = new RoomDatabase.Callback() {
+        /**
+         * Basic examples for user, creating only first time app runs.
+         */
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             databaseWriteExecutor.execute(() -> {
                 LocalDateTime basicTime = LocalDateTime.now();
-                Card card1 = new Card("Title 1", "Description 1", basicTime, basicTime.plusHours(1));
-                Card card2 = new Card("Title 2", "Go to the shop to find cat food", basicTime.plusHours(2), basicTime.plusHours(4));
+                Card card1 = new Card("Order marshmallows for cacao", "Search the cheapest variant for home usage", basicTime, basicTime.plusMinutes(30));
+                Card card2 = new Card("Purchase food for cat", "Go to the shop near the station to find cat food", basicTime.plusHours(1), basicTime.plusHours(1).plusMinutes(15));
                 CardDao dao = INSTANCE.cardDao();
                 dao.insert(card1);
                 dao.insert(card2);

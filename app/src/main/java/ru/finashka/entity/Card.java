@@ -30,6 +30,7 @@ public class Card implements Serializable {
         this.endTime = endTime;
     }
 
+    @NonNull
     @PrimaryKey(autoGenerate = true)
     private Integer id;
 
