@@ -5,15 +5,15 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import ru.finashka.converter.TimeConverter;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -30,24 +30,19 @@ public class Card implements Serializable {
         this.endTime = endTime;
     }
 
-    @NonNull
     @PrimaryKey(autoGenerate = true)
     private Integer id;
 
-    @NonNull
     @ColumnInfo(name = "title")
     private String title;
 
-    @NonNull
     @ColumnInfo(name = "details")
     private String details;
 
-    @NonNull
     @ColumnInfo(name = "start_time")
     @TypeConverters({TimeConverter.class})
     private LocalDateTime startTime;
 
-    @NonNull
     @ColumnInfo(name = "end_time")
     @TypeConverters({TimeConverter.class})
     private LocalDateTime endTime;

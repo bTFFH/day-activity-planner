@@ -7,7 +7,7 @@
     android:paddingHorizontal="@dimen/fab_margin"
     android:orientation="vertical"
     >
-        <androidx.recyclerview.widget.RecyclerView
+        <ru.finashka.ContextMenuRecyclerView
             android:id="@+id/activity_card_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

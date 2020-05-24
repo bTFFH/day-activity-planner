@@ -9,6 +9,7 @@ import androidx.room.Query;
 import androidx.room.TypeConverters;
 import androidx.room.Update;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,6 +27,10 @@ public interface CardDao {
     @Query("SELECT * FROM card WHERE start_time > :start and start_time < :end ORDER BY start_time")
     @TypeConverters({TimeConverter.class})
     LiveData<List<Card>> getAllByStartTimeBounds(LocalDateTime start, LocalDateTime end);
+
+    @Query("SELECT * FROM card WHERE date(start_time) <= :date and date(end_time) >= :date ORDER BY start_time")
+    @TypeConverters({TimeConverter.class})
+    LiveData<List<Card>> getAllByIncludeDate(LocalDate date);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Card card);
