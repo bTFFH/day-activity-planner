@@ -4,6 +4,9 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import ru.finashka.dao.CardDao;
@@ -11,16 +14,17 @@ import ru.finashka.entity.Card;
 
 class CardRepository {
     private CardDao mCardDao;
-    private LiveData<List<Card>> mAllCards;
 
     CardRepository(Application app) {
         AppDatabase db = AppDatabase.getDatabase(app);
         mCardDao = db.cardDao();
-        mAllCards = mCardDao.getAll();
     }
 
-    LiveData<List<Card>> getAllCards() {
-        return mAllCards;
+    LiveData<List<Card>> getCardsByDate(LocalDate date) {
+        LocalDateTime dateStart = date.atStartOfDay();
+        LocalDateTime dateEnd = LocalTime.MAX.atDate(date);
+
+        return mCardDao.getAllByStartTimeBounds(dateStart, dateEnd);
     }
 
     void insert(final Card card) {

@@ -23,9 +23,9 @@ public interface CardDao {
     @Query("SELECT * FROM card WHERE title LIKE :title")
     Card getByTitle(String title);
 
-    @Query("SELECT * FROM card WHERE start_time > :start and end_time < :end ORDER BY start_time")
+    @Query("SELECT * FROM card WHERE start_time > :start and start_time < :end ORDER BY start_time")
     @TypeConverters({TimeConverter.class})
-    LiveData<List<Card>> getAllByStartEndTime(LocalDateTime start, LocalDateTime end);
+    LiveData<List<Card>> getAllByStartTimeBounds(LocalDateTime start, LocalDateTime end);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Card card);
