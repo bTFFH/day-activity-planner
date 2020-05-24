@@ -6,6 +6,7 @@
     <string name="add_card_start">Начало</string>
     <string name="add_card_end">Конец</string>
     <string name="card_saved">Карточка сохранена</string>
+    <string name="card_removed">Карточка удалена</string>
     <string name="card_saved_error">Карточка не была сохранена</string>
     <string name="calendar_emoji">&#128198;</string>
     <string name="delete_card_item">Удалить</string>

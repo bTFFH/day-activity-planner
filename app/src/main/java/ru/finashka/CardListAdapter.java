@@ -14,7 +14,8 @@ import java.util.List;
 import ru.finashka.entity.Card;
 
 public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardViewHolder> {
-    class CardViewHolder extends RecyclerView.ViewHolder {
+
+    static class CardViewHolder extends RecyclerView.ViewHolder {
         private final TextView titleView;
         private final TextView startTimeView;
         private final TextView endTimeView;
@@ -45,6 +46,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
         if (mCurrentCards != null) {
             Card currentCard = mCurrentCards.get(position);
             holder.titleView.setText(currentCard.getTitle());
+            holder.itemView.setLongClickable(true);
 
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MMM dd, HH:mm");
             holder.startTimeView.setText(dateFormat.format(currentCard.getStartTime()));
@@ -57,10 +59,15 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
         notifyDataSetChanged();
     }
 
+    public List<Card> getCards() {
+        return mCurrentCards;
+    }
+
     @Override
     public int getItemCount() {
-        if (mCurrentCards != null)
+        if (mCurrentCards != null) {
             return mCurrentCards.size();
-        else return 0;
+        }
+        return 0;
     }
 }

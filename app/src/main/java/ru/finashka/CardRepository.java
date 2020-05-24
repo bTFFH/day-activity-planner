@@ -24,7 +24,7 @@ class CardRepository {
         LocalDateTime dateStart = date.atStartOfDay();
         LocalDateTime dateEnd = LocalTime.MAX.atDate(date);
 
-        return mCardDao.getAllByStartTimeBounds(dateStart, dateEnd);
+        return mCardDao.getAllByIncludeDate(date);
     }
 
     void insert(final Card card) {
