@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_card_layout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:id="@+id/activity_card_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/fab_margin"
+    android:orientation="vertical"
+    >
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/activity_card_recycler_view"
+            android:id="@+id/activity_card_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/activity_card_item" />
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            tools:listitem="@layout/activity_card_item"
+            />
+</LinearLayout>
