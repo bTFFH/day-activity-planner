@@ -23,53 +23,42 @@ import ru.finashka.entity.Card;
 
 public class AddCardActivity extends AppCompatActivity {
 
-    private SimpleDateFormat mFormatter = new SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.getDefault());
+    private SimpleDateFormat mFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 
     private Calendar startDate = Calendar.getInstance();
     private Calendar endDate = Calendar.getInstance();
 
-    // установка обработчика выбора времени
-    private TimePickerDialog.OnTimeSetListener startTimeListener = new TimePickerDialog.OnTimeSetListener() {
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            startDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            startDate.set(Calendar.MINUTE, minute);
-            Button btn = findViewById(R.id.start_date_btn);
-            btn.setText(mFormatter.format(startDate.getTime()));
-        }
+    private TimePickerDialog.OnTimeSetListener startTimeListener = (view, hourOfDay, minute) -> {
+        startDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        startDate.set(Calendar.MINUTE, minute);
+        Button btn = findViewById(R.id.start_date_btn);
+        btn.setText(mFormatter.format(startDate.getTime()));
     };
 
-    // установка обработчика выбора даты
-    private DatePickerDialog.OnDateSetListener startDateListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            startDate.set(Calendar.YEAR, year);
-            startDate.set(Calendar.MONTH, monthOfYear);
-            startDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            new TimePickerDialog(AddCardActivity.this, R.style.DialogTheme, startTimeListener,
-                    startDate.get(Calendar.HOUR), startDate.get(Calendar.MINUTE), true)
-                    .show();
-        }
+    private DatePickerDialog.OnDateSetListener startDateListener = (view, year, monthOfYear, dayOfMonth) -> {
+        startDate.set(Calendar.YEAR, year);
+        startDate.set(Calendar.MONTH, monthOfYear);
+        startDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        new TimePickerDialog(AddCardActivity.this, R.style.DialogTheme, startTimeListener,
+                startDate.get(Calendar.HOUR), startDate.get(Calendar.MINUTE), true)
+                .show();
     };
 
-    // установка обработчика выбора времени
-    private TimePickerDialog.OnTimeSetListener endTimeListener = new TimePickerDialog.OnTimeSetListener() {
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            startDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            startDate.set(Calendar.MINUTE, minute);
-            Button btn = findViewById(R.id.end_date_btn);
-            btn.setText(mFormatter.format(endDate.getTime()));
-        }
+
+    private TimePickerDialog.OnTimeSetListener endTimeListener = (view, hourOfDay, minute) -> {
+        endDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        endDate.set(Calendar.MINUTE, minute);
+        Button btn = findViewById(R.id.end_date_btn);
+        btn.setText(mFormatter.format(endDate.getTime()));
     };
 
-    // установка обработчика выбора даты
-    private DatePickerDialog.OnDateSetListener endDateListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            endDate.set(Calendar.YEAR, year);
-            endDate.set(Calendar.MONTH, monthOfYear);
-            endDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            new TimePickerDialog(AddCardActivity.this, R.style.DialogTheme, startTimeListener,
-                    endDate.get(Calendar.HOUR), endDate.get(Calendar.MINUTE), true)
-                    .show();
-        }
+    private DatePickerDialog.OnDateSetListener endDateListener = (view, year, monthOfYear, dayOfMonth) -> {
+        endDate.set(Calendar.YEAR, year);
+        endDate.set(Calendar.MONTH, monthOfYear);
+        endDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        new TimePickerDialog(AddCardActivity.this, R.style.DialogTheme, endTimeListener,
+                endDate.get(Calendar.HOUR), endDate.get(Calendar.MINUTE), true)
+                .show();
     };
 
 
@@ -77,10 +66,12 @@ public class AddCardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
-        Button btn = findViewById(R.id.start_date_btn);
-        btn.setText(mFormatter.format(startDate.getTime()));
-        btn = findViewById(R.id.end_date_btn);
-        btn.setText(mFormatter.format(endDate.getTime()));
+
+        Button startTimeButton = findViewById(R.id.start_date_btn);
+        startTimeButton.setText(mFormatter.format(startDate.getTime()));
+
+        Button endTimeButton = findViewById(R.id.end_date_btn);
+        endTimeButton.setText(mFormatter.format(endDate.getTime()));
     }
 
     public void addCard(View view) {
@@ -90,12 +81,13 @@ public class AddCardActivity extends AppCompatActivity {
         String details = detailsView.getText().toString();
         LocalDateTime startDate = this.startDate.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         LocalDateTime endDate = this.endDate.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        Card card = new Card(null, title, details, startDate, endDate);
+        Card card = new Card(title, details, startDate, endDate);
         Intent data = new Intent();
         data.putExtra("card", card);
         setResult(Activity.RESULT_OK, data);
         finish();
     }
+
 
     public void openStartTimeDialog(View view) {
         new DatePickerDialog(AddCardActivity.this, R.style.DialogTheme, startDateListener,
@@ -104,7 +96,6 @@ public class AddCardActivity extends AppCompatActivity {
                 startDate.get(Calendar.DAY_OF_MONTH))
                 .show();
     }
-
 
     public void openEndTimeDialog(View view) {
         new DatePickerDialog(AddCardActivity.this, R.style.DialogTheme, endDateListener,

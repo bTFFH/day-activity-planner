@@ -1,97 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                     xmlns:tools="http://schemas.android.com/tools"
-                                                     android:layout_width="match_parent"
-                                                     android:layout_height="match_parent"
-                                                     tools:context=".AddCardActivity">
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCardActivity"
+    >
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/fab_margin"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/add_card_title"
+            android:inputType="textPersonName"
+            android:singleLine="true" android:fontFamily="@font/roboto"
+            />
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_card_title" android:textSize="18sp"
-                android:textColor="@color/blue"
-                android:lineSpacingExtra="8sp" android:fontFamily="@font/roboto"/>
         <EditText
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/add_card_title"
-                android:inputType="textPersonName"
-                android:singleLine="true" android:fontFamily="@font/roboto"/>
+            android:id="@+id/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/add_card_details"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPersonName"
+            android:lines="4"
+            android:minLines="3"
+            />
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/blue"
-                android:text="@string/add_card_details"
-                android:fontFamily="@font/roboto"/>
-        <EditText
-                android:id="@+id/details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/add_card_details"
-                android:fontFamily="@font/roboto"
-                android:inputType="textPersonName"
-                android:lines="4"
-                android:minLines="3"/>
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/blue"
-                android:text="@string/add_card_start" android:fontFamily="@font/roboto"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/blue"
+            android:text="@string/add_card_start"
+            android:fontFamily="@font/roboto"
+            />
 
         <Button
-                android:id="@+id/start_date_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:ems="10"
-                android:onClick="openStartTimeDialog"
-                android:textAlignment="textStart"
-                android:fontFamily="casual"
-                android:textSize="18sp" android:typeface="normal"/>
+            android:id="@+id/start_date_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:ems="10"
+            android:onClick="openStartTimeDialog"
+            android:textAlignment="textStart"
+            android:fontFamily="casual"
+            android:textSize="18sp" android:typeface="normal"
+            />
 
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/blue"
-                android:text="@string/add_card_end" android:fontFamily="@font/roboto"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/blue"
+            android:text="@string/add_card_end" android:fontFamily="@font/roboto"
+            />
 
         <Button
-                android:id="@+id/end_date_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:ems="10"
-                android:fontFamily="casual"
-                android:onClick="openEndTimeDialog"
-                android:textSize="18sp" android:typeface="normal"
-                android:textAlignment="textStart"/>
+            android:id="@+id/end_date_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:ems="10"
+            android:fontFamily="casual"
+            android:onClick="openEndTimeDialog"
+            android:textSize="18sp" android:typeface="normal"
+            android:textAlignment="textStart"
+            />
     </LinearLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/save_card_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:backgroundTint="@color/blue"
-            android:onClick="addCard"
-            app:srcCompat="@drawable/ic_done_white_24dp"/>
+        android:id="@+id/save_card_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="@color/blue"
+        android:onClick="addCard"
+        app:srcCompat="@drawable/ic_done_white_24dp"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
